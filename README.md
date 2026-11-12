@@ -1,14 +1,46 @@
-# thm-tutor-extension
-AI-powered Chrome extension that teaches you TryHackMe labs step-by-step without giving direct answers — built for learning, not solving.
+# THM Tutor - AI Learning Guide (Chrome Extension)
 
+Yeh extension TryHackMe labs seekhne me madad karta hai - **answer ya flag kabhi nahi deta**,
+sirf concepts samjhata hai aur sawaal-jawab se aapko sochne ki disha deta hai.
 
+## Install kaise karein (Developer Mode)
 
-THM Tutor एक AI-powered Chrome Extension है जो TryHackMe पर cybersecurity सीखने वालों के लिए खास तौर पर बनाया गया है। यह tool किसी भी lab को खुद solve नहीं करता और न ही flag या final answer कभी देता है — बल्कि एक असली tutor की तरह काम करता है, जो student को सही दिशा में सोचने के लिए guide करता है।
+1. Chrome me jaayein: `chrome://extensions`
+2. Top-right me "Developer mode" ON karein
+3. "Load unpacked" button dabayein
+4. Yeh poora `thm-tutor-extension` folder select karein
+5. Extension install ho jayega - toolbar me icon dikhega
 
-जब आप किसी TryHackMe room या task page पर होते हैं, यह extension सिर्फ उस page का content पढ़ता है — task description, hints, और सवाल — और उसी context को ध्यान में रखते हुए आपसे बातचीत करता है। यह कभी किसी form को खुद नहीं भरता, कोई payload submit नहीं करता, और न ही किसी तरह का automated exploitation करता है। इसका इस्तेमाल केवल पढ़ने और समझने के लिए होता है।
+## Setup
 
-Extension का core हिस्सा एक Socratic-style AI tutor है, जो OpenRouter API के ज़रिए किसी भी बड़े language model (जैसे Claude, GPT, या Llama) को इस्तेमाल करता है। इसे एक सख्त system prompt के साथ design किया गया है, जो AI को हमेशा यह याद दिलाता रहता है कि उसका काम concepts समझाना है, जवाब देना नहीं। अगर student बार-बार सीधा answer मांगे, तो भी AI politely मना करता है और इसके बजाय सवाल पूछता है जैसे — "आपने अब तक क्या try किया?", "यह error का मतलब समझते हैं?", या छोटे-छोटे hints देता है ताकि student खुद सोचकर आगे बढ़े।
+1. TryHackMe ke kisi bhi room/task page par jaayein
+2. Extension icon par click karein - side panel khulega
+3. Settings (⚙) me apni **OpenRouter API key** daalein
+   - Key yahan se milegi: https://openrouter.ai/keys
+4. Model choose karein (default: Claude 3.5 Sonnet)
+5. "Save" dabayein
 
-यह tool खास तौर पर उन students के लिए उपयोगी है जो cybersecurity में practical तरीके से सीखना चाहते हैं — enumeration, privilege escalation, web exploitation, buffer overflow जैसे topics को बिना शॉर्टकट लिए, गहराई से समझना चाहते हैं। Extension पूरी तरह Chrome Manifest V3 पर आधारित है, एक side panel के ज़रिए chat interface देता है, और आपकी API key सिर्फ आपके browser में local तौर पर store होती है — कहीं और नहीं भेजी जाती।
+## Use kaise karein
 
-संक्षेप में, THM Tutor एक responsible learning companion है, जो cybersecurity सीखने के सफर को आसान, interactive और असल में ज्ञानवर्धक बनाता है — बिना seekhne की प्रक्रिया को bypass किए।
+1. "🔄 Page padho" button dabayein - yeh current lab page ka content padh lega
+2. Neeche chat box me apna sawaal likhein, jaise:
+   - "Mujhe samajh nahi aa raha yeh task kya keh raha hai"
+   - "Enumeration kaise shuru karu?"
+   - "Yeh error ka matlab kya hai?"
+3. AI aapko guide karega - hints dega, concepts samjhayega, lekin
+   **direct answer ya flag kabhi nahi dega**
+
+## Important baatein
+
+- Yeh tool **koi lab solve nahi karta** - sirf aapko sikhata hai
+- Aapki API key sirf aapke browser me (local) store hoti hai
+- Page sirf **padha** jata hai, extension kabhi koi form fill ya submit nahi karta
+- Agar page content sahi se nahi padh pa raha, page reload karke "Page padho" dubara dabayein
+
+## Files
+
+- `manifest.json` - extension config
+- `content.js` - TryHackMe page se text padhta hai (read-only)
+- `background.js` - side panel kholne ke liye
+- `sidepanel.html` / `sidepanel.js` - chat UI aur OpenRouter API calls
+- `icon.png` - extension icon

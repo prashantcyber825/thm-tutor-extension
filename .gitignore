@@ -1,0 +1,15 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+
+# Node (agar future me build tools add karein)
+node_modules/
+dist/
+
+# Kabhi bhi API keys file me mat daalna - yeh storage (chrome.storage.local) me save hoti hai
+*.env
+secrets.json

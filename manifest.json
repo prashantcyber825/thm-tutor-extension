@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "THM Tutor - AI Learning Guide",
+  "version": "1.0.0",
+  "description": "Ek AI tutor jo TryHackMe labs samjhne me madad karta hai - bina direct answer diye, sirf guide karke.",
+  "permissions": ["sidePanel", "storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "*://tryhackme.com/*",
+    "https://openrouter.ai/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://tryhackme.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "THM Tutor kholo"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}
